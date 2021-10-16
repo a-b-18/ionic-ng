@@ -1,0 +1,6 @@
+{
+	"appId": "com.beazy.recipes.ionic.ng",
+	"appName": "ionic-ng",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}

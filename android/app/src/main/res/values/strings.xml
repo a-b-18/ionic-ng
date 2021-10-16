@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">ionic-ng</string>
+    <string name="title_activity_main">ionic-ng</string>
+    <string name="package_name">com.beazy.recipes.ionic.ng</string>
+    <string name="custom_url_scheme">com.beazy.recipes.ionic.ng</string>
+</resources>

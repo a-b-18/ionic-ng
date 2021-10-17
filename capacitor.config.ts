@@ -1,8 +1,8 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'com.beazy.recipes.ionic.ng',
-  appName: 'ionic-ng',
+  appId: 'com.thats.where.ionic.ng',
+  appName: 'ThatsWhere',
   webDir: 'www',
   bundledWebRuntime: false
 };

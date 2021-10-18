@@ -1,0 +1,15 @@
+<ion-grid>
+  <ion-row *ngIf="apiLoaded | async">
+    <google-map
+    id="map"
+      [center]="center"
+      [zoom]="zoom"
+    >
+    <map-marker [position]="userLocation"></map-marker>
+    <map-marker [position]="customLocation"></map-marker>
+    </google-map>
+  </ion-row>
+  <ion-row style="margin-left: 20%;">
+    <ion-button (click)="updateCurrentPosition()">Update Location</ion-button>
+  </ion-row>
+</ion-grid>

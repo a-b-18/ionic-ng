@@ -6,34 +6,16 @@ import { environment } from 'src/environments/environment';
 import { Geolocation } from '@capacitor/geolocation';
 
 @Component({
-  selector: 'app-google-maps-demo',
-  templateUrl: './google-maps-demo.component.html',
+  selector: 'app-google-maps-api',
+  templateUrl: './google-maps-api.component.html',
 })
-export class GoogleMapsDemoComponent implements OnInit {
+export class GoogleMapsApiComponent implements OnInit {
 
   apiLoaded: Observable<boolean>;
-  center: google.maps.LatLngLiteral = {lat: 40, lng: -20};
+  userLocation: google.maps.LatLngLiteral;
+  customLocation: google.maps.LatLngLiteral;
   zoom = 18;
-
-  // Initialize and add the map
-// function initMap(): void {
-//   // The location of Uluru
-//   const uluru = { lat: -25.344, lng: 131.036 };
-//   // The map, centered at Uluru
-//   const map = new google.maps.Map(
-//     document.getElementById("map") as HTMLElement,
-//     {
-//       zoom: 4,
-//       center: uluru,
-//     }
-//   );
-
-//   // The marker, positioned at Uluru
-//   const marker = new google.maps.Marker({
-//     position: uluru,
-//     map: map,
-//   });
-// }
+  map: google.maps.Map;
 
   constructor(httpClient: HttpClient) {
     this.apiLoaded = httpClient.jsonp('https://maps.googleapis.com/maps/api/js?key=' + environment.googleApiKey, 'callback')
@@ -43,13 +25,36 @@ export class GoogleMapsDemoComponent implements OnInit {
         );
   }
 
+  initMap(): void {
+    this.map = new google.maps.Map(
+      document.getElementById('map') as HTMLElement,
+      {
+        zoom: 4,
+        center: { lat: -25.363882, lng: 131.044922 },
+      }
+    );
+
+    this.map.addListener('click', (e) => {
+      this.placeMarkerAndPanTo(e.latLng);
+    });
+  }
+
+  placeMarkerAndPanTo(latLng: google.maps.LatLng) {
+    new google.maps.Marker({
+      position: latLng,
+      map: this.map,
+    });
+    this.map.panTo(latLng);
+  }
+
+
   ngOnInit() {
     this.updateCurrentPosition();
   }
 
   updateCurrentPosition = async () => {
     const coordinates = await Geolocation.getCurrentPosition();
-    this.center = {lat: coordinates.coords.latitude, lng: coordinates.coords.longitude};
+    this.userLocation = {lat: coordinates.coords.latitude, lng: coordinates.coords.longitude};
     console.log('Current position:', coordinates);
   };
 

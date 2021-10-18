@@ -3,11 +3,11 @@ import { GoogleMapsModule } from '@angular/google-maps';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
 
-import { GoogleMapsDemoComponent } from './google-maps-demo.component';
+import { GoogleMapsApiComponent } from './google-maps-api.component';
 
 @NgModule({
   declarations: [
-    GoogleMapsDemoComponent,
+    GoogleMapsApiComponent,
   ],
   imports: [
     CommonModule,
@@ -16,7 +16,7 @@ import { GoogleMapsDemoComponent } from './google-maps-demo.component';
     HttpClientJsonpModule,
   ],
   exports: [
-    GoogleMapsDemoComponent,
+    GoogleMapsApiComponent,
   ],
 })
-export class GoogleMapsDemoModule {}
+export class GoogleMapsApiModule {}
